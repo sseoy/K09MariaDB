@@ -8,7 +8,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include  file="../common/isFlag.jsp" %>
-
+ 
 <%
 //한글깨짐처리 - 검색폼에서 입력된 한글이 전송되기때문
 request.setCharacterEncoding("UTF-8");

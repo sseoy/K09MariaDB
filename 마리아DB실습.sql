@@ -17,6 +17,7 @@ create table member(
     											datatime : 날짜와 시간을 동시에 표현할수있는 자료형*/
     primary key(id)
 );
+DROP TABLE member;
 
 #게시판 테이블(자식)
 /*
@@ -207,3 +208,43 @@ INSERT INTO board (title, content, id, bname)
 SELECT * FROM board WHERE bname='freeboard';
 -- 공지사항 리스트 보기
 SELECT * FROM board WHERE bname='notice';
+
+
+membershipboard
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////// 
+
+create table multi_board(
+    num INT NOT NULL auto_increment,
+    title VARCHAR(100) not null,
+    content text nboardot null,
+    postdate datetime default current_timestamp,
+    id varchar(30) not null,
+    visitcount mediumint(10) NOT NULL DEFAULT 0,
+    PRIMARY KEY (num)
+);
+
+
+create table membership(
+    name VARCHAR(30) not null,
+    id VARCHAR(30) not null,
+    pass VARCHAR(30) not null,
+    tel VARCHAR(30) DEFAULT 0,
+    mobile VARCHAR(30) not null,
+    email VARCHAR(30) NOT NULL,
+    zip VARCHAR(500) NOT NULL,
+    joindate DATETIME DEFAULT CURRENT_TIMESTAMP,
+    grade INT DEFAULT 1,
+    
+    PRIMARY KEY(id)membership
+);
+
+
+insert INTO membership( name, id, pass, mobile, email, zip, grade)
+ VALUES('관리자', 'kosmo1', '1234','010-5597-1287', 'aflj1287@naver.com',  '서울특별시 가산동 147-31', 3);
+
+
+
+
+

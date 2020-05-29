@@ -25,7 +25,7 @@ dao.close();
 	<jsp:include page="../common/boardTop.jsp" />
 	<div class="row">		
 		<jsp:include page="../common/boardLeft.jsp" />
-		<div class="col-9 pt-3">
+		<div class="co l-9 pt-3">
 			<h3><%=boardTitle %>게시판 - <small>Edit(수정)</small></h3>
 <script>
 	//유기명함수

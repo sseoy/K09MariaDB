@@ -210,18 +210,30 @@ SELECT * FROM board WHERE bname='freeboard';
 SELECT * FROM board WHERE bname='notice';
 
 
-membershipboard
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////// 
-
-create table multi_board(
+create table board(
     num INT NOT NULL auto_increment,
     title VARCHAR(100) not null,
-    content text nboardot null,
+    content text not null,
     postdate datetime default current_timestamp,
     id varchar(30) not null,
     visitcount mediumint(10) NOT NULL DEFAULT 0,
+    PRIMARY KEY (num)
+);
+
+
+
+
+create table multi_board(
+    num INT NOT NULL auto_increment,
+    id varchar(30) not null,
+    title VARCHAR(100) not null,
+    pass VARCHAR(30) NOT NULL,
+    content text not null,multi_board
+    postdate datetime default current_timestamp,
+    visitcount mediumint(10) NOT NULL DEFAULT 0,
+    attachedfile VARCHAR(100),
+    downcount INT DEFAULT 0,
+    bname VARCHAR(50) NOT NULL,
     PRIMARY KEY (num)
 );
 
@@ -244,7 +256,44 @@ create table membership(
 insert INTO membership( name, id, pass, mobile, email, zip, grade)
  VALUES('관리자', 'kosmo1', '1234','010-5597-1287', 'aflj1287@naver.com',  '서울특별시 가산동 147-31', 3);
 
+SELECT COUNT(*) FROM membership WHERE id LIKE 'ko%';
+
+SELECT * FROM membership WHERE grade='1'; 
+
+SELECT * FROM membership WHERE grade='1'        ORDER BY name DESC;
 
 
+SELECT * FROM membership WHERE grade='1'        ORDER BY name DESC LIMIT 0, 2;
 
 
+INSERT INTO membership(NAME, id, pass, tell, mobile, email, addr, zip, emailcheck, addrdetail)
+	VALUES('1', '1', '1', '1','1','1','1','1','1','1');
+	
+UPDATE membership SET NAME='hhh', tell='hhh', mobile='hhh', email='hhh', grade='2', zip='12354', addr='hhh', addrdetail='hhh' WHERE id='2';
+
+
+ALTER TABLE multi_board ADD constraint fk_board_member
+	FOREIGN KEY (id) REFERENCES membership(id) ON DELETE cascade;
+
+INSERT INTO multi_board (id, title, content, bname)
+	VALUE ('kosmo', '안녕하세요 여기는 공지사항 제목 글자수 오버로딩 테스트중입ㄴ니다.','자유게시판 내용2', 'notice');
+	
+INSERT INTO multi_board (id, title, content, bname, scheduledate )
+	VALUE ('kosmo', '안녕하세요 여기는 프로그램 일정 ','프로그램 일정2','schedule' ,'20200515' );
+
+
+INSERT INTO multi_board ( title,content,id,visitcount, bname)    VALUES ( '1111','1111','kosmo',0,'1111');
+
+ALTER TABLE multi_board DROP CONSTRAINT fk_board_member;
+
+SELECTmembership
+	B.*, M.name
+FROM multi_board B INNER JOIN membership M 
+ON M.id = B.id
+WHERE bname='notice'
+ ORDER BY num DESC LIMIT 1, 2;
+ 
+ 
+constrint fk_board_member FOREIGN KEY REFERENCES membership(id) ON DELETE casecade;
+ 
+ 

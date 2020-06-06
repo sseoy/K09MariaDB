@@ -205,7 +205,7 @@ public class BbsDAO {
          */
          psmt.setInt(1, Integer.parseInt(map.get("start").toString()));
          psmt.setInt(2, Integer.parseInt(map.get("end").toString()));
-         
+                                    
          rs = psmt.executeQuery();
          
          //오라클이 반환해준 ResultSet의 갯수만큼 반복한다.

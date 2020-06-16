@@ -297,3 +297,22 @@ WHERE bname='notice'
 constrint fk_board_member FOREIGN KEY REFERENCES membership(id) ON DELETE casecade;
  
  
+ create table request_form(
+    r_num INT NOT NULL auto_increment,
+    r_id varchar(30) not null,
+    r_addr VARCHAR(300) not null,
+    r_tel VARCHAR(30) NOT NULL,
+    r_phone VARCHAR(30) NOT NULL,
+    r_email VARCHAR(100) NOT NULL,
+    cleaningtype VARCHAR(100),
+    pyeong int,
+    r_date VARCHAR(30) NOT NULL,
+    postdate datetime default current_timestamp,
+    receip VARCHAR(200) ,
+    r_request VARCHAR(30) NOT NULrequest_formL,
+    PRIMARY KEY (r_num)
+);
+
+ALTER TABLE request_form DROP CONSTRAINT fk_request_member;
+ALTER TABLE request_form ADD constraint fk_request_member
+	FOREIGN KEY (r_id) REFERENCES membership(id) ON DELETE cascade;
